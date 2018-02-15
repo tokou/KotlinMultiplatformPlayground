@@ -6,3 +6,5 @@ include 'js'
 include 'native'
 include 'android'
 include 'ios'
+include 'desktop'
+
