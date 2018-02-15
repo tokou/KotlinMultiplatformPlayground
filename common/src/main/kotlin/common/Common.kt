@@ -1,3 +1,4 @@
+package common
 
 // This code is common across all backends
 class Common {
