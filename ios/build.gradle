@@ -1,0 +1,26 @@
+buildscript {
+    repositories {
+        maven { url('http://repository.openbakery.org') }
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.openbakery:xcode-plugin:0.15.3.develop.124"
+    }
+}
+
+apply plugin: 'org.openbakery.xcode-plugin'
+
+xcodebuild {
+    scheme = 'KotlinMultiplatformPlayground'
+    target = 'KotlinMultiplatformPlayground'
+    destination = 'iPhone 8'
+}
+
+// This builds .framework files for iphone and iphone_sim
+// The correct file needs to be linked to this folder
+// For now the link is static and points to
+// ../native/build/bin/iphone_sim/KotlinMultiplatformPlaygroundLib.framework
+xcodebuildConfig.dependsOn ':native:compileKonanKotlinMultiplatformPlaygroundLib'
+
+task run(dependsOn: simulatorRunApp)

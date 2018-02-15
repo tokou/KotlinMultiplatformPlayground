@@ -13,6 +13,10 @@ konanArtifacts {
         }
         extraOpts '-tr'
     }
+
+    framework('KotlinMultiplatformPlaygroundLib', targets: ['iphone', 'iphone_sim']) {
+        enableMultiplatform true
+    }
 }
 
 dependencies {
