@@ -1,3 +1,4 @@
+import common.Common
 import kotlin.test.*
 
 class CommonTest {
