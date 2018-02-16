@@ -21,6 +21,6 @@ xcodebuild {
 // The correct file needs to be linked to this folder
 // For now the link is static and points to
 // ../native/build/bin/iphone_sim/KotlinMultiplatformPlaygroundLib.framework
-xcodebuildConfig.dependsOn ':native:compileKonanKotlinMultiplatformPlaygroundLib'
+xcodebuildConfig.dependsOn ':native:compileKonanKotlinMultiplatformPlaygroundLibIphone_sim'
 
 task run(dependsOn: simulatorRunApp)
