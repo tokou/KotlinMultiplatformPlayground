@@ -14,6 +14,10 @@ buildscript {
     }
 }
 
+plugins {
+    id 'cz.malohlava' version '1.0.3'
+}
+
 allprojects {
     group 'org.jetbrains'
     version '1.0-SNAPSHOT'
@@ -29,5 +33,25 @@ allprojects {
             showStandardStreams = true
             events "passed", "failed"
         }
+    }
+}
+
+task convertGraph(type: Exec) {
+    description 'Convert the task dependency graph to svg'
+    workingDir project.buildDir
+    commandLine 'dot', '-Tsvg', 'reports/visteg.dot', '-o', 'reports/visteg.svg'
+    doLast {
+        println "Task dependency graph is available in file://$project.buildDir/reports/visteg.svg"
+    }
+}
+
+task graph(type: Exec) {
+    dependsOn convertGraph
+    group 'Custom'
+    description 'Opens the task dependency graph in Safari'
+    workingDir project.buildDir
+    def isMacOs = System.properties['os.name'].toLowerCase().startsWith('mac')
+    if (isMacOs) {
+        commandLine 'open', '-a', 'Safari', 'reports/visteg.svg'
     }
 }
