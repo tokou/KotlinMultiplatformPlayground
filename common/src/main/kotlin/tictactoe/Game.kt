@@ -29,14 +29,13 @@ class Game {
         state = State.PLAY
     }
 
-    fun move(player: Player, position: Position) {
+    fun move(position: Position) {
         if (state != State.PLAY) throw IllegalArgumentException()
-        if (player != nextPlayer) throw IllegalArgumentException()
         if (!position.isValid()) throw IllegalArgumentException()
         val i = position.getIndex()
         val cell = board[i]
         if (cell != null) throw IllegalStateException()
-        board[i] = player
+        board[i] = nextPlayer
         checkWinner()
         state =
             if (winner != null) State.WIN
@@ -73,10 +72,10 @@ class Game {
         else null
 
     companion object {
-        private const val SIZE = 3
+        const val SIZE = 3
+        val POSITION_RANGE = 0 until SIZE
         private const val LENGTH = SIZE * SIZE
-        private val POSITION_RANGE = 0 until SIZE
         private val BOARD_RANGE = 0 until LENGTH
-        private val INITIAL_PLAYER = Player.X
+        val INITIAL_PLAYER = Player.X
     }
 }

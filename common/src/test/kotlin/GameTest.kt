@@ -21,16 +21,9 @@ class GameTest {
     }
 
     @Test
-    fun testGameWrongPlayerThrows() {
-        assertFails {
-            game.move(Player.O, 0 to 0)
-        }
-    }
-
-    @Test
     fun testGameWrongPositionThrows() {
         assertFails {
-            game.move(Player.X, -1 to 0)
+            game.move(-1 to 0)
         }
     }
 
@@ -96,5 +89,5 @@ class GameTest {
         assertNull(game.winner)
     }
 
-    private fun List<Position>.play(game: Game) = this.forEach { game.move(game.nextPlayer, it) }
+    private fun List<Position>.play(game: Game) = this.forEach { game.move(it) }
 }
