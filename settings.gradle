@@ -8,4 +8,4 @@ include 'android'
 include 'ios'
 include 'desktop'
 include 'web'
-
+include 'terminal'
