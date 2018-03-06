@@ -1,4 +1,5 @@
-import common.Common
+package common
+
 import kotlin.test.*
 
 class CommonTest {

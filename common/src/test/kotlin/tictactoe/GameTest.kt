@@ -1,19 +1,21 @@
-import tictactoe.Game
-import tictactoe.Player
-import tictactoe.Position
+package tictactoe
+
 import kotlin.test.*
 
 class GameTest {
 
     private lateinit var game: Game
 
-    @BeforeTest
+    // @BeforeTest
+    // Still not defined in Kotlin Native
+    // https://github.com/JetBrains/kotlin-native/pull/1388
     fun setUp() {
         game = Game()
     }
 
     @Test
     fun testGameInitialState() {
+        setUp()
         assertNull(game.winner)
         assertFalse(game.isFinished())
         assertFalse(game.isDraw())
@@ -22,6 +24,7 @@ class GameTest {
 
     @Test
     fun testGameWrongPositionThrows() {
+        setUp()
         assertFails {
             game.move(-1 to 0)
         }
@@ -29,6 +32,7 @@ class GameTest {
 
     @Test
     fun testReset() {
+        setUp()
         listOf(0 to 0, 1 to 0, 0 to 1, 1 to 1, 0 to 2).play(game)
         game.reset()
         testGameInitialState()
@@ -36,6 +40,7 @@ class GameTest {
 
     @Test
     fun testGameWinLine() {
+        setUp()
         // X X X
         // O O -
         // - - -
@@ -47,6 +52,7 @@ class GameTest {
 
     @Test
     fun testGameWinColumn() {
+        setUp()
         // X O -
         // X O -
         // X - -
@@ -58,6 +64,7 @@ class GameTest {
 
     @Test
     fun testGameWinDiagonal() {
+        setUp()
         // X O -
         // - X O
         // - - X
@@ -69,6 +76,7 @@ class GameTest {
 
     @Test
     fun testGameWinAntiDiagonal() {
+        setUp()
         // - O X
         // O X -
         // X - -
@@ -80,6 +88,7 @@ class GameTest {
 
     @Test
     fun testGameDraw() {
+        setUp()
         // X O X
         // X O O
         // O X X
